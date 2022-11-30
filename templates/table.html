@@ -6,15 +6,30 @@
     <title>Brew Crew</title>
 </head>
 
-<table>
-    <tr>
+<body>
+<div>
 
-        <! Add columns from the dataframe>
-        {% for header in headers %}
-        <th>{{ header }}</th>
+    <table>
+        <!columns>
+        <tr>
+            {% for header in headers %}
+            <th>{{ header }}</th>
+            {% endfor %}
+        </tr>
+        <!rows of data>
+        {% for row in data %}
+        <tr>
+            {% for cell in row %}
+            <td>
+                {{ cell }}
+            </td>
+            {% endfor %}
+        </tr>
         {% endfor %}
+    </table>
 
-    </tr>
-</table>
+</div>
+</body>
+
 
 </html>

@@ -1,6 +1,7 @@
 from flask import render_template
 import pandas as pd
 from pandas import Index
+import numpy as np
 
 from data.fp import path_to_data as fp
 from dataclasses import dataclass, field
@@ -23,7 +24,7 @@ class CSV:
     def cols(self) -> Index:
         return self._df.columns
 
-    def data(self):
+    def data(self) -> np.array:
         return self._df.to_numpy()
 
 
