@@ -30,7 +30,7 @@ tr:nth-child(odd) {
 th {
     font-weight: bold;
     text-align: left;
-    background-color: darkred;
+    background-color: #141d57;
     color: beige;
     text-shadow: black;
     padding: 8px;

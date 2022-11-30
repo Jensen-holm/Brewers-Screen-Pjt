@@ -5,6 +5,9 @@ function sortTable(table, col = "", asc = true) {
 
     // now sort them
     var sortedRows = rows.sort((a, b) => {
+        const aTxt = a.querySelector(`td:nth-child(${column + 1})`).textContent.trim()
+        const bTxt = b.querySelector(`td:nth-child(${column + 1})`).textContent.trim()
 
     })
 }
+

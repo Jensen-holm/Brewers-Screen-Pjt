@@ -11,13 +11,13 @@
 <body>
 <div class="content-table center">
 
-
     <table class="content-table center table-sortable sticky">
         <!columns>
         <thead>
         <tr>
+            <th class="headcol">{{ sticky_col }}</th>
             {% for header in headers %}
-            <th>{{ header }}</th>
+            <th onclick=sortTable()>{{ header }}</th>
             {% endfor %}
         </tr>
         </thead>
@@ -37,6 +37,5 @@
 
 </div>
 </body>
-
 
 </html>
