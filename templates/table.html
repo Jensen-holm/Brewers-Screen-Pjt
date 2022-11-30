@@ -3,27 +3,30 @@
 
 <head>
     <link rel="stylesheet" href="/static/styles.css">
+    <link rel="script" href="/static/table.js">
+    <link rel="stylesheet" href="/static/tablesort.css">
     <title>Brew Crew</title>
 </head>
 
 <body>
 <div class="content-table center">
 
-    <table class="content-table center">
+
+    <table class="content-table center table-sortable sticky">
         <!columns>
         <thead>
-        <tr class="table__header">
+        <tr>
             {% for header in headers %}
-            <th class="table__cell">{{ header }}</th>
+            <th>{{ header }}</th>
             {% endfor %}
         </tr>
         </thead>
         <tbody>
         <!rows of data>
         {% for row in data %}
-        <tr class="table__row">
+        <tr>
             {% for cell in row %}
-            <td class="table__cell">
+            <td>
                 {{ cell }}
             </td>
             {% endfor %}
