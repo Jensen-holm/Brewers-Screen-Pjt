@@ -4,16 +4,15 @@ Technical screening project for the Brewers baseball systems internship
 
 ### To Run
 
-clone the repo
+clone the repo <br>
 `git clone https://github.com/Jensen-holm/Brewers-Screen-Pjt` <br>
-
-go into the project
-`cd Brewers-Screen-Pjt`
-
-install dependencies
-`pip3 install -r requirements.txt`
-
-
-run application
-`flask run`
+<br>
+go into the project <br>
+`cd Brewers-Screen-Pjt` <br>
+<br>
+install dependencies <br>
+`pip3 install -r requirements.txt` <br>
+<br>
+run application <br>
+`flask run` <br>
 
