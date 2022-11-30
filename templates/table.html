@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Brew Crew</title>
+</head>
+
+<table>
+    <tr>
+
+        <! Add columns from the dataframe>
+        {% for header in headers %}
+        <th>{{ header }}</th>
+        {% endfor %}
+
+    </tr>
+</table>
+
+</html>
