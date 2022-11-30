@@ -2,30 +2,34 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/static/styles.css">
     <title>Brew Crew</title>
 </head>
 
 <body>
-<div>
+<div class="content-table center">
 
-    <table>
+    <table class="content-table center">
         <!columns>
-        <tr>
+        <thead>
+        <tr class="table__header">
             {% for header in headers %}
-            <th>{{ header }}</th>
+            <th class="table__cell">{{ header }}</th>
             {% endfor %}
         </tr>
+        </thead>
+        <tbody>
         <!rows of data>
         {% for row in data %}
-        <tr>
+        <tr class="table__row">
             {% for cell in row %}
-            <td>
+            <td class="table__cell">
                 {{ cell }}
             </td>
             {% endfor %}
         </tr>
         {% endfor %}
+        </tbody>
     </table>
 
 </div>
