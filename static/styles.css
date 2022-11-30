@@ -20,16 +20,17 @@ html {
 .center {
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: auto;
+    margin-top: auto;
 }
 
 .content-table {
-    overflow-x: scroll;
-    overflow-y: scroll;
+    overflow: scroll;
     border-collapse: collapse;
-    width: 500px;
-    height: 500px;
-    margin: 0 auto;
-    top: 40%;
+    max-width: 900px;
+    max-height: 700px;
+    margin: 10% auto;
+    margin-bottom: 50%;
 }
 
 tr:nth-child(even) {
