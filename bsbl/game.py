@@ -1,5 +1,4 @@
-from dataclasses import dataclass, field
-from views.table import CSV
+from dataclasses import dataclass
 import pandas as pd
 from team import Team
 

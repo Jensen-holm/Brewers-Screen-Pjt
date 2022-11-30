@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from views.table import data_table
 
 app = Flask(
@@ -11,6 +11,13 @@ app = Flask(
 @app.route("/", methods=["GET"])
 def main():
     return data_table()
+
+
+@app.route("/plots", methods=["GET"])
+def plots():
+    return render_template(
+        "vis.html"
+    )
 
 
 if __name__ == "__main__":

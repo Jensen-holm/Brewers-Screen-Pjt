@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Brew Crew</title>
+</head>
+
+
+<body>
+<div>
+    <nav class="topnav">
+        <a href="/">Table</a>
+        <a href="/plots">Plots</a>
+    </nav>
+</div>
+
+<div id="loader"></div>
+
+
+<!Pre loader function>
+<script>
+    function ricky() {
+        let loader = document.getElementById("loader");
+        setTimeout(function () {
+            loader.style.display = "none";
+        }, 750)
+    }
+
+    ricky()
+</script>
+</body>
+</html>
