@@ -10,6 +10,7 @@ app = Flask(
 )
 
 
+@app.route("/result")
 @app.route("/hitters")
 @app.route("/", methods=["GET", "POST"])
 def data_table():
@@ -45,7 +46,7 @@ def data_table():
     )
 
 
-@app.route("/result", methods=["GET", "POST"])
+# @app.route("/result", methods=["GET", "POST"])
 def plot_page():
 
     player_name = "Texas vs. Arkansas"
