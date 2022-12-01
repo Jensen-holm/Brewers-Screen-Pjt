@@ -5,16 +5,17 @@
 }
 
 html {
-    background-color: darkgrey;
+    background-color: #332f2f;
     overflow: scroll;
 }
+
 
 #loader {
     position: fixed;
     width: 100%;
     height: 100vh;
     background-size: 60%;
-    background: darkgrey url("assets/rickey-unscreen.gif") no-repeat center center;
+    background: #332f2f url("assets/rickey-unscreen.gif") no-repeat center center;
 }
 
 .center {
@@ -73,7 +74,7 @@ td {
 }
 
 .topnav a:hover {
-    background-color: #323232;
+    background-color: #e0c30a;
     color: black;
 }
 
