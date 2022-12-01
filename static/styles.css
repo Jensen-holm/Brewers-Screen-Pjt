@@ -29,8 +29,9 @@ html {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-    max-width: 300px;
-    max-height: 300px;
+    max-width: 30%;
+    max-height: 30%;
+    margin-top: 5%;
 }
 
 .content-table {
@@ -101,4 +102,12 @@ td {
 
 .input {
     text-align: center;
+}
+
+.page_title {
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    color: beige;
+    text-shadow: black;
 }

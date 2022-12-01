@@ -11,20 +11,29 @@
 
 <body>
 
+    <div>
+        <nav class="topnav">
+            <a href="/">Pitcher Analysis</a>
+            <a href="/hitters">Hitter Analysis</a>
+        </nav>
+    </div>
+
+    <div class="center page_title">
+        <h1>Pitcher Analysis</h1>
+    </div>
+
     <div id="loader"></div>
 
     <div class="player_name_header center">
-        <h1>{{ player_name }}</h1>
+        <h2>{{ player_name }}</h2>
 
         <! Should make the date dynamic>
         <p>4/23/22</p>
     </div>
 
     <div>
-        <form action="/result" method="POST" autocomplete="on">
-            <label for="player_name">Pitcher -> </label>
+        <form action="/result" method="POST" autocomplete="on" class="input">
             <input type="text" id="player_name" name="player_name"><br><br>
-            <label for="submit">submit</label>
             <input type="submit" id="submit">
         </form>
     </div>

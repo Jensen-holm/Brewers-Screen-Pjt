@@ -33,6 +33,10 @@ class CSV:
     def subset_pitcher(self, pitcher_name: str) -> pd.DataFrame:
         return self.df()[self.df()["Pitcher"] == pitcher_name]
 
+    def subset_data(self, col: str, val) -> pd.DataFrame:
+        assert (col in self.cols())
+        return self.df()[self.df()[col] == val]
+
 
 tbl = CSV()
 tbl.read()

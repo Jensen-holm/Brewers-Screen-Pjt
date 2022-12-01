@@ -15,8 +15,8 @@ def data_table():
 
     # default data
     player_name: str = "Texas vs. Arkansas"
-    data = tbl.data()
     headers = tbl.cols()
+    data = tbl.data()
 
     # default plot
     plt_data = tbl.df()
@@ -27,8 +27,6 @@ def data_table():
         plyr_sub = tbl.subset_pitcher(player_name)
         data = plyr_sub.to_numpy()
         headers = plyr_sub.columns
-
-        plot(plyr_sub, defualt=False)
 
     return render_template(
         "index.html",
@@ -46,7 +44,7 @@ def plot_page():
     if request.method == "POST":
         player_name = request.form["player_name"].strip()
         plyr_tbl = tbl.subset_pitcher(player_name)
-        plot(plyr_tbl)
+        plot(plyr_tbl, default=False)
 
     # then the html will render the saved plot
     return render_template(
