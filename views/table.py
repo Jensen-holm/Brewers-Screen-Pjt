@@ -37,6 +37,9 @@ class CSV:
         assert (col in self.cols())
         return self.df()[self.df()[col] == val]
 
+    def unique(self, col) -> list:
+        return self.df()[col].unique().tolist()
+
 
 tbl = CSV()
 tbl.read()

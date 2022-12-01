@@ -33,7 +33,12 @@
 
     <div>
         <form action="/result" method="POST" autocomplete="on" class="input">
-            <input type="text" id="player_name" name="player_name"><br><br>
+           <input list="player_name" class="input" placeholder="Enter {{ pos_page }} name ..."> 
+           <datalist id="player_name">
+                {% for player in unique_players %}
+                    <option value="{{ player }}">{{ player }}</option>
+                {% endfor %}
+            </datalist>
             <input type="submit" id="submit">
         </form>
     </div>

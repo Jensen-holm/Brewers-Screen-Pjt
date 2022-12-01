@@ -15,22 +15,23 @@ app = Flask(
 def data_table():
 
     pos_page = "Pitcher"
-
     if "hitters" in request.path:
-        pos_page = "Hitter"
+        pos_page = "Batter"
 
     # default data
     player_name: str = "Texas vs. Arkansas"
     headers = tbl.cols()
     data = tbl.data()
+    unique_players = tbl.unique(pos_page)
 
     # default plot
     plt_data = tbl.df()
     plot(plt_data, default=True)
 
     if request.method == "POST":
+        unique_players = tbl.unique(pos_page)
         player_name = request.form["player_name"].strip()
-        plyr_sub = tbl.subset_pitcher(player_name)
+        plyr_sub = tbl.subset_hitter(player_name)
         data = plyr_sub.to_numpy()
         headers = plyr_sub.columns
 
@@ -39,14 +40,15 @@ def data_table():
         pos_page=pos_page,
         headers=headers,
         data=data,
-        player_name=player_name
+        player_name=player_name,
+        unique_players=unique_players
     )
 
 
 @app.route("/result", methods=["GET", "POST"])
 def plot_page():
 
-    player_name = "Dallas, Micah"
+    player_name = "Texas vs. Arkansas"
 
     if request.method == "POST":
         player_name = request.form["player_name"].strip()
