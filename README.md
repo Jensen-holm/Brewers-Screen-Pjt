@@ -14,5 +14,5 @@ install dependencies <br>
 `pip3 install -r requirements.txt` <br>
 <br>
 run application <br>
-`flask run` <br>
+`python3 app.py` <br>
 
