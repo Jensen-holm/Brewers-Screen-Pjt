@@ -10,8 +10,14 @@ app = Flask(
 )
 
 
+@app.route("/hitters")
 @app.route("/", methods=["GET", "POST"])
 def data_table():
+
+    pos_page = "Pitcher"
+
+    if "hitters" in request.path:
+        pos_page = "Hitter"
 
     # default data
     player_name: str = "Texas vs. Arkansas"
@@ -30,6 +36,7 @@ def data_table():
 
     return render_template(
         "index.html",
+        pos_page=pos_page,
         headers=headers,
         data=data,
         player_name=player_name
