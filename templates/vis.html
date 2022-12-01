@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
-    <link rel="icon" type="image/x-icon" href="/static/assets/cutch.ico">
-    <link rel="stylesheet" href="/static/styles.css">
+    <link type="image/x-icon" rel="icon" href="{{ url_for("static", filename="cutch.ico" ) }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="styles.css") }}"/>
     <title>Brew Crew</title>
 </head>
+
 
 <body>
 <div>
@@ -21,7 +22,7 @@
 <!We want to make a dropdown text form input that when you select a player, it will make a plot of all of the pitches
 that that player has seen or thrown>
 
-<form action="/plotresult" method="get" autocomplete="on">
+<form action="/result" method="get" autocomplete="on">
     <label for="fname">Player: </label>
     <input type="text" id="fname" name="fname"><br><br>
     <label for="submit">submit</label>
@@ -41,4 +42,5 @@ that that player has seen or thrown>
     ricky()
 </script>
 </body>
+
 </html>

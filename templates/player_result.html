@@ -1,23 +1,50 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="/static/styles.css">
-    <title>{{ player_name }} Plot</title>
+    <link type="image/x-icon" rel="icon" href="{{ url_for("static", filename="/assets/brew.png" ) }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="styles.css") }}"/>
+    <title>Brew Crew</title>
 </head>
 
-<body>
 
-<!display graphs for these players pitches and stuff>
+<body>
 <div>
-    <img class="center" src="/views/plots/player_result_plot.svg" alt="player_result_image">
+    <nav class="topnav">
+        <a href="/">Table</a>
+        <a href="/plots">Plots</a>
+    </nav>
+</div>
+
+<div id="loader"></div>
+
+
+<!We want to make a dropdown text form input that when you select a player, it will make a plot of all of the pitches
+that that player has seen or thrown>
+
+<form action="/result" method="get" autocomplete="on">
+    <label for="fname">Player: </label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <label for="submit">submit</label>
+    <input type="submit" id="submit">
+</form>
+
+
+<div>
+    <img src="{{ url_for("static", filename="/plots/player_result_plot.svg") }}" alt="player_result_plt">
 </div>
 
 
-<!display a table with only this players columns>
+<!Pre loader function>
+<script>
+    function ricky() {
+        let loader = document.getElementById("loader");
+        setTimeout(function () {
+            loader.style.display = "none";
+        }, 750)
+    }
 
-
+    ricky()
+</script>
 </body>
-
 </html>

@@ -2,12 +2,12 @@
 <html lang="en">
 
 <head>
-    <link rel="icon" type="image/x-icon" href="/static/cutch.ico">
-    <link rel="stylesheet" href="/static/styles.css">
-    <link rel="script" href="/static/table.js">
-    <link rel="stylesheet" href="/static/tablesort.css">
+    <link type="image/x-icon" rel="icon" href="{{ url_for("static", filename="/assets/brew.png" ) }}"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="styles.css") }}"/>
+    <link rel="script" href="{{ url_for("static", filename="table.js") }}"/>
     <title>Brew Crew</title>
 </head>
+
 
 <body>
 
@@ -27,25 +27,26 @@
         <thead>
         <tr>
             {% for header in headers %}
-            <th onclick=sortTable()>{{ header }}</th>
+                <th onclick=sortTable()>{{ header }}</th>
             {% endfor %}
         </tr>
         </thead>
         <tbody>
         <!rows of data>
         {% for row in data %}
-        <tr>
-            {% for cell in row %}
-            <td>
-                {{ cell }}
-            </td>
-            {% endfor %}
-        </tr>
+            <tr>
+                {% for cell in row %}
+                    <td>
+                        {{ cell }}
+                    </td>
+                {% endfor %}
+            </tr>
         {% endfor %}
         </tbody>
     </table>
 
 </div>
+
 
 <!Pre loader function>
 <script>
@@ -60,5 +61,4 @@
 </script>
 
 </body>
-
 </html>
