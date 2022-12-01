@@ -2,63 +2,64 @@
 <html lang="en">
 
 <head>
-    <link type="image/x-icon" rel="icon" href="{{ url_for("static", filename="/assets/brew.png" ) }}"/>
-    <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="styles.css") }}"/>
-    <link rel="script" href="{{ url_for("static", filename="table.js") }}"/>
+    <link type="image/x-icon" rel="icon" href="{{ url_for("static", filename="/assets/brew.png" ) }}" />
+    <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="styles.css" ) }}" />
+    <link rel="script" href="{{ url_for("static", filename="table.js" ) }}" />
     <title>Brew Crew</title>
 </head>
 
 
 <body>
 
-<div>
-    <nav class="topnav">
-        <a href="/">Table</a>
-        <a href="/plots">Plots</a>
-    </nav>
-</div>
+    <div>
+        <nav class="topnav">
+            <a href="/">Table</a>
+            <a href="/plots">Plots</a>
+        </nav>
+    </div>
 
-<div id="loader"></div>
+    <div id="loader"></div>
 
-<div class="content-table center">
+    <div class="content-table center">
 
-    <table class="content-table center table-sortable sticky">
-        <!columns>
-        <thead>
-        <tr>
-            {% for header in headers %}
-                <th onclick=sortTable()>{{ header }}</th>
-            {% endfor %}
-        </tr>
-        </thead>
-        <tbody>
-        <!rows of data>
-        {% for row in data %}
-            <tr>
-                {% for cell in row %}
-                    <td>
-                        {{ cell }}
-                    </td>
-                {% endfor %}
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+        <table class="content-table center table-sortable sticky">
+            <!columns>
+                <thead>
+                    <tr>
+                        {% for header in headers %}
+                        <th onclick=sortTable()>{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <!rows of data>
+                        {% for row in data %}
+                        <tr>
+                            {% for cell in row %}
+                            <td>
+                                {{ cell }}
+                            </td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                </tbody>
+        </table>
 
-</div>
+    </div>
 
 
-<!Pre loader function>
-<script>
-    function ricky() {
-        let loader = document.getElementById("loader");
-        setTimeout(function () {
-            loader.style.display = "none";
-        }, 750)
-    }
+    <!Pre loader function>
+        <script>
+            function ricky() {
+                let loader = document.getElementById("loader");
+                setTimeout(function () {
+                    loader.style.display = "none";
+                }, 750)
+            }
 
-    ricky()
-</script>
+            ricky()
+        </script>
 
 </body>
+
 </html>

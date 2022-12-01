@@ -1,4 +1,3 @@
-
 .sticky th {
     position: sticky;
     top: 0;
@@ -15,7 +14,7 @@ html {
     width: 100%;
     height: 100vh;
     background-size: 60%;
-    background: #332f2f url("assets/rickey-unscreen.gif") no-repeat center center;
+    background: #332f2f url("assets/brews-unscreen.gif") no-repeat center center;
 }
 
 .center {
