@@ -11,7 +11,6 @@ matplotlib.use("svg")
 
 
 def k_zone(player_df: pd.DataFrame, ax) -> None:
-    print(player_df)
     ax[0, 0].scatter(
         player_df["PlateLocSide"],
         player_df["PlateLocHeight"]
@@ -24,8 +23,10 @@ def save_plot(fig) -> None:
     fig.savefig(path_2_plots + "player_result_plot.svg")
 
 
-def plot(player_df: pd.DataFrame) -> None:
+def plot(player_df: pd.DataFrame, default: bool) -> None:
     fig, ax = plt.subplots(2, 2)
     k_zone(player_df, ax=ax)
-
     save_plot(fig)
+
+    # use the default argument to determine what should be colored
+    # on the plot

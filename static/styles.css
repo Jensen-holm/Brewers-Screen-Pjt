@@ -98,3 +98,7 @@ td {
     color: beige;
     text-shadow: black;
 }
+
+.input {
+    text-align: center;
+}

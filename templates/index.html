@@ -11,14 +11,27 @@
 
 <body>
 
-    <div>
-        <nav class="topnav">
-            <a href="/">Table</a>
-            <a href="/plots">Plots</a>
-        </nav>
+    <div id="loader"></div>
+
+    <div class="player_name_header center">
+        <h1>{{ player_name }}</h1>
+
+        <! Should make the date dynamic>
+        <p>4/23/22</p>
     </div>
 
-    <div id="loader"></div>
+    <div>
+        <form action="/result" method="POST" autocomplete="on">
+            <label for="player_name">Pitcher -> </label>
+            <input type="text" id="player_name" name="player_name"><br><br>
+            <label for="submit">submit</label>
+            <input type="submit" id="submit">
+        </form>
+    </div>
+
+    <div>
+        <img class="center_img" src="{{ url_for("static", filename="/plots/player_result_plot.svg" ) }}" alt="player_result_plt">
+    </div>
 
     <div class="content-table center">
 

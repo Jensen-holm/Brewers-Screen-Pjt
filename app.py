@@ -10,18 +10,32 @@ app = Flask(
 )
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def data_table():
+
+    # default data
+    player_name: str = "Texas vs. Arkansas"
+    data = tbl.data()
+    headers = tbl.cols()
+
+    # default plot
+    plt_data = tbl.df()
+    plot(plt_data, default=True)
+
+    if request.method == "POST":
+        player_name = request.form["player_name"].strip()
+        plyr_sub = tbl.subset_pitcher(player_name)
+        data = plyr_sub.to_numpy()
+        headers = plyr_sub.columns
+
+        plot(plyr_sub, defualt=False)
+
     return render_template(
-        "table.html",
-        headers=tbl.cols(),
-        data=tbl.data()
+        "index.html",
+        headers=headers,
+        data=data,
+        player_name=player_name
     )
-
-
-@app.route("/plots")
-def input():
-    return render_template("vis.html")
 
 
 @app.route("/result", methods=["GET", "POST"])
@@ -30,7 +44,7 @@ def plot_page():
     player_name = "Dallas, Micah"
 
     if request.method == "POST":
-        player_name = request.form["fname"]
+        player_name = request.form["player_name"].strip()
         plyr_tbl = tbl.subset_pitcher(player_name)
         plot(plyr_tbl)
 
