@@ -4,6 +4,7 @@
 <head>
     <link type="image/x-icon" rel="icon" href="{{ url_for("static", filename="/assets/brew.png" ) }}" />
     <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="styles.css" ) }}" />
+    <link rel="script" href="{{ url_for("static", filename="table.js" ) }}" />
     <title>Brew Crew</title>
 </head>
 
@@ -32,68 +33,60 @@
 
     <div>
         <form action="/result" method="POST" autocomplete="on" class="input">
-            <input type="text" id="player_name" name="player_name"><br><br>
+           <input id="player_name" type="text" name="player_name" list="player_name" class="input" placeholder="Enter {{ pos_page }} name ..."> 
+           <datalist id="player_name">
+                {% for player in unique_players %}
+                    <option value="{{ player }}">{{ player }}</option>
+                {% endfor %}
+            </datalist>
             <input type="submit" id="submit">
         </form>
     </div>
 
-
-    <div class="player_name_header center">
-        <h1>{{ player_name }}</h1>
+    <div>
+        <img class="center_img" src="{{ url_for("static", filename="/plots/player_result_plot.svg" ) }}" alt="player_result_plt">
     </div>
 
-        <form action="/result" method="POST" autocomplete="on">
-            <label for="fname">Player: </label>
-            <input type="text" id="fname" name="fname"><br><br>
-            <label for="submit">submit</label>
-            <input type="submit" id="submit">
-        </form>
+    <div class="content-table center">
 
-        <div>
-            <img class="center_img" src="{{ url_for("static", filename="/plots/player_result_plot.svg" ) }}" alt="player_result_plt">
-        </div>
-
-
-        <! Show the subset of the players data after the graphs`>
-        <div class="content-table center">
-
-            <table class="content-table center table-sortable sticky">
-                <!columns>
-                    <thead>
+        <table class="content-table center table-sortable sticky">
+            <!columns>
+                <thead>
+                    <tr>
+                        {% for header in headers %}
+                        <th onclick=sortTable()>{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    <!rows of data>
+                        {% for row in data %}
                         <tr>
-                            {% for header in headers %}
-                            <th onclick=sortTable()>{{ header }}</th>
+                            {% for cell in row %}
+                            <td>
+                                {{ cell }}
+                            </td>
                             {% endfor %}
                         </tr>
-                    </thead>
-                    <tbody>
-                        <!rows of data>
-                            {% for row in data %}
-                            <tr>
-                                {% for cell in row %}
-                                <td>
-                                    {{ cell }}
-                                </td>
-                                {% endfor %}
-                            </tr>
-                            {% endfor %}
-                    </tbody>
-            </table>
-    
-        </div>
+                        {% endfor %}
+                </tbody>
+        </table>
+
+    </div>
 
 
-        <!Pre loader function>
-            <script>
-                function pre_loader() {
-                    let loader = document.getElementById("loader");
-                    setTimeout(function () {
-                        loader.style.display = "none";
-                    }, 750)
-                }
+    <!Pre loader function>
+        <script>
+            function pre_loader() {
+                let loader = document.getElementById("loader");
+                setTimeout(function () {
+                    loader.style.display = "none";
+                }, 750)
+            }
 
-                pre_loader()
-            </script>
+            pre_loader()
+        </script>
+
 </body>
 
 </html>

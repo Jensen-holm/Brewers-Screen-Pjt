@@ -39,8 +39,8 @@ html {
     border-collapse: collapse;
     max-width: 900px;
     max-height: 700px;
-    margin: 10% auto;
-    margin-bottom: 50%;
+    margin: 5% auto;
+    margin-bottom: 10%;
 }
 
 tr:nth-child(even) {
