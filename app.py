@@ -31,12 +31,15 @@ def plot_page():
 
     if request.method == "POST":
         player_name = request.form["fname"]
-        plot(tbl.subset_pitcher(player_name))
+        plyr_tbl = tbl.subset_pitcher(player_name)
+        plot(plyr_tbl)
 
     # then the html will render the saved plot
     return render_template(
         "player_result.html",
-        player_name=player_name
+        player_name=player_name,
+        headers=plyr_tbl.columns,
+        data=tbl.subset_pitcher(player_name).to_numpy()
     )
 
 

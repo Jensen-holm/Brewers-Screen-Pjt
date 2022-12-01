@@ -41,6 +41,35 @@
         </div>
 
 
+        <! Show the subset of the players data after the graphs`>
+        <div class="content-table center">
+
+            <table class="content-table center table-sortable sticky">
+                <!columns>
+                    <thead>
+                        <tr>
+                            {% for header in headers %}
+                            <th onclick=sortTable()>{{ header }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!rows of data>
+                            {% for row in data %}
+                            <tr>
+                                {% for cell in row %}
+                                <td>
+                                    {{ cell }}
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                    </tbody>
+            </table>
+    
+        </div>
+
+
         <!Pre loader function>
             <script>
                 function pre_loader() {
