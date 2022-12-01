@@ -29,14 +29,5 @@ class CSV:
         return self.df().to_numpy()
 
 
-# we are going to want to remove columns that either all give missing values or
-# that give information we don't really need to see
-
-def data_table():
-    tbl = CSV()
-    tbl.read()
-    return render_template(
-        "table.html",
-        headers=tbl.cols(),
-        data=tbl.data()
-    )
+tbl = CSV()
+tbl.read()

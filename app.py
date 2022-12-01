@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 import os
-from views.table import data_table, CSV
+from views.table import tbl
 from views.vis import plot_player
 
 app = Flask(
@@ -11,8 +11,12 @@ app = Flask(
 
 
 @app.route("/")
-def index() -> str:
-    return data_table()
+def data_table():
+    return render_template(
+        "table.html",
+        headers=tbl.cols(),
+        data=tbl.data()
+    )
 
 
 @app.route("/plots")
@@ -23,9 +27,7 @@ def input():
 @app.route("/result")
 def plot():
     # parse request data and put into plot player function
-    d = CSV()
-    d.read()
-    plot_player("Dallas, Micah", d.df())
+    plot_player("Dallas, Micah", tbl.df())
     # then teh html will render the saved plot
     return render_template(
         "player_result.html"
