@@ -1,4 +1,3 @@
-from flask import render_template
 import pandas as pd
 from pandas import Index
 import numpy as np
@@ -27,6 +26,12 @@ class CSV:
 
     def data(self) -> np.array:
         return self.df().to_numpy()
+
+    def subset_hitter(self, hitter_name: str) -> pd.DataFrame:
+        return self.df()[self.df()["Batter"] == hitter_name]
+
+    def subset_pitcher(self, pitcher_name: str) -> pd.DataFrame:
+        return self.df()[self.df()["Pitcher"] == pitcher_name]
 
 
 tbl = CSV()

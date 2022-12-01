@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import os
 from views.table import tbl
-from views.vis import plot_player
+from views.vis import plot
 
 app = Flask(
     __name__,
@@ -25,10 +25,12 @@ def input():
 
 
 @app.route("/result")
-def plot():
+def plot_page():
     # parse request data and put into plot player function
-    plot_player("Dallas, Micah", tbl.df())
-    # then teh html will render the saved plot
+
+    plot(tbl.subset_hitter("Dallas, Micah"))
+
+    # then the html will render the saved plot
     return render_template(
         "player_result.html"
     )

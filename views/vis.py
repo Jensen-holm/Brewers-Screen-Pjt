@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib
-from views.table import CSV
 from static.plots.plot import path_2_plots
+import pandas as pd
 
 
 # set default themes to seaborn
@@ -10,22 +10,20 @@ sns.set()
 matplotlib.use("svg")
 
 
-def plot_player(player_name, data):
-    # subset the data to just get the player
+def k_zone(player_df: pd.DataFrame, ax) -> None:
+    ax[0, 0].scatter(
+        player_df["PlateLocSide"],
+        player_df["PlateLocHeight"], c="red"
+    )
 
-    player = data[data["Pitcher"] == player_name]
 
-    fig, ax = plt.subplots(figsize=(10, 6))
-    ax.scatter(x="PlateLocSide", y="PlateLocHeight", data=player)
+
+def save_plot(fig) -> None:
+    fig.savefig(path_2_plots + "player_result_plot.svg")
+
+
+def plot(player_df: pd.DataFrame) -> None:
+    fig, ax = plt.subplots(2, 2)
+    k_zone(player_df, ax=ax)
+
     save_plot(fig)
-
-
-def save_plot(plot, name: str = "player_result_plot"):
-    plot.savefig(path_2_plots + "/" + name)
-
-
-if __name__ == "__main__":
-    # use this plot to debug how our plot works and looks
-    d = CSV()
-    d.read()
-    plot_player("Dallas, Micah", data=d.df())
