@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import os
 from views.table import tbl
 from views.vis import plot
@@ -24,15 +24,19 @@ def input():
     return render_template("vis.html")
 
 
-@app.route("/result")
+@app.route("/result", methods=["GET", "POST"])
 def plot_page():
-    # parse request data and put into plot player function
 
-    plot(tbl.subset_hitter("Dallas, Micah"))
+    player_name = "Dallas, Micah"
+
+    if request.method == "POST":
+        player_name = request.form["fname"]
+        plot(tbl.subset_pitcher(player_name))
 
     # then the html will render the saved plot
     return render_template(
-        "player_result.html"
+        "player_result.html",
+        player_name=player_name
     )
 
 

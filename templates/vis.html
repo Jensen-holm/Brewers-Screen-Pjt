@@ -22,7 +22,7 @@
     <!We want to make a dropdown text form input that when you select a player, it will make a plot of all of the
         pitches that that player has seen or thrown>
 
-        <form action="/result" method="get" autocomplete="on">
+        <form action="/result" method="POST" autocomplete="on">
             <label for="fname">Player: </label>
             <input type="text" id="fname" name="fname"><br><br>
             <label for="submit">submit</label>
@@ -32,14 +32,14 @@
 
         <!Pre loader function>
             <script>
-                function ricky() {
+                function pre_loader() {
                     let loader = document.getElementById("loader");
                     setTimeout(function () {
                         loader.style.display = "none";
                     }, 750)
                 }
 
-                ricky()
+                pre_loader()
             </script>
 </body>
 

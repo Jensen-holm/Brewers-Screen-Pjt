@@ -11,11 +11,13 @@ matplotlib.use("svg")
 
 
 def k_zone(player_df: pd.DataFrame, ax) -> None:
+    print(player_df)
     ax[0, 0].scatter(
         player_df["PlateLocSide"],
-        player_df["PlateLocHeight"], c="red"
+        player_df["PlateLocHeight"]
     )
 
+    ax[0, 0].set_title("K Zone")
 
 
 def save_plot(fig) -> None:
