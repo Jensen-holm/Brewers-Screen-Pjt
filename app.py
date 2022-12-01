@@ -1,6 +1,7 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 from views.table import data_table, CSV
 from views.vis import plot_player
+import os
 
 app = Flask(
     __name__,
