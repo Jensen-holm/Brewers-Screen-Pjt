@@ -13,7 +13,8 @@
 
     <div>
         <nav class="topnav">
-            <a href="/">Pitcher Analysis</a>
+            <a href="/">Home</a>
+            <a href="/pitchers">Pitcher Analysis</a>
             <a href="/hitters">Hitter Analysis</a>
         </nav>
     </div>
@@ -32,8 +33,8 @@
     </div>
 
     <div>
-        <form action="/result" method="POST" autocomplete="on" class="input">
-           <input type="text" list="player_name" class="input" placeholder="Enter {{ pos_page }} name ..."> 
+        <form name="player_name" action="/result" method="POST" autocomplete="on" class="input">
+           <input id="player_name_input" name="player_name_input" type="text" list="player_name" class="input" placeholder="type {{ pos_page }}'s name ..."> 
            <datalist id="player_name">
                 {% for player in unique_players %}
                     <option value="{{ player }}">{{ player }}</option>

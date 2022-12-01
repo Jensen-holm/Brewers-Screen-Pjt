@@ -10,9 +10,13 @@ app = Flask(
 )
 
 
-@app.route("/result")
-@app.route("/hitters")
-@app.route("/", methods=["GET", "POST"])
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
+@app.route("/pitchers", methods=["GET"])
+@app.route("/hitters", methods=["GET"])
 def data_table():
 
     pos_page = "Pitcher"
@@ -29,15 +33,8 @@ def data_table():
     plt_data = tbl.df()
     plot(plt_data, default=True)
 
-    if request.method == "POST":
-        unique_players = tbl.unique(pos_page)
-        player_name = request.form["player_name"].strip()
-        plyr_sub = tbl.subset_hitter(player_name)
-        data = plyr_sub.to_numpy()
-        headers = plyr_sub.columns
-
     return render_template(
-        "index.html",
+        "player_result.html",
         pos_page=pos_page,
         headers=headers,
         data=data,
@@ -46,22 +43,26 @@ def data_table():
     )
 
 
-# @app.route("/result", methods=["GET", "POST"])
-def plot_page():
+@app.route("/result", methods=["GET", "POST"])
+def result_table():
 
-    player_name = "Texas vs. Arkansas"
+    pos_page = "Pitcher"
 
     if request.method == "POST":
-        player_name = request.form["player_name"].strip()
-        plyr_tbl = tbl.subset_pitcher(player_name)
-        plot(plyr_tbl, default=False)
+        unique_players = tbl.unique(pos_page)
+        player_name = request.form["player_name_input"].strip()
+        plyr_sub = tbl.subset_hitter(player_name)
+        data = plyr_sub.to_numpy()
+        headers = plyr_sub.columns
+        plot(plyr_sub, default=False)
 
-    # then the html will render the saved plot
     return render_template(
         "player_result.html",
+        pos_page=pos_page,
+        headers=headers,
+        data=data,
         player_name=player_name,
-        headers=plyr_tbl.columns,
-        data=tbl.subset_pitcher(player_name).to_numpy()
+        unique_players=unique_players
     )
 
 
