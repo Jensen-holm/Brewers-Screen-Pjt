@@ -12,19 +12,19 @@
 <body>
 
     <div>
-        <nav class="topnav">
+        <nav class="topnav sticky_nav">
             <a href="/">Pitcher Analysis</a>
             <a href="/hitters">Hitter Analysis</a>
         </nav>
     </div>
 
-    <div class="center page_title">
+    <div class="page_title">
         <h1>{{ pos_page }} Analysis</h1>
     </div>
 
     <div id="loader"></div>
 
-    <div class="player_name_header center">
+    <div class="player_name_header">
         <h2>{{ player_name }}</h2>
 
         <! Should make the date dynamic>
@@ -33,17 +33,17 @@
 
     <div>
         {% if pos_page == "Pitcher" %}
-        <form action="/pitcher_result" method="POST" autocomplete="on" class="input">
+        <form action="/pitcher_result" method="POST" class="input">
         {% else %}
-        <form action="/hitter_result" method="POST" autocomplete="on" class="input">
+        <form action="/hitter_result" method="POST" class="input">
         {% endif %}
-           <input id="player_name_input" name="player_name_input" type="text" list="player_name" class="input" placeholder="type {{ pos_page }}'s name ..."> 
+           <input id="player_name_input" name="player_name_input" type="text" list="player_name" class="input" placeholder="type {{ pos_page }}'s name ...">
            <datalist id="player_name">
                 {% for player in unique_players %}
                     <option value="{{ player }}">{{ player }}</option>
                 {% endfor %}
             </datalist>
-            <input type="submit" id="submit">
+            <input type="submit" id="submit" value="Enter">
         </form>
     </div>
 
@@ -51,9 +51,9 @@
         <img class="center_img" src="{{ url_for("static", filename="/plots/player_result_plot.svg" ) }}" alt="player_result_plt">
     </div>
 
-    <div class="content-table center">
+    <div class="content-table">
 
-        <table class="content-table center table-sortable sticky">
+        <table class="content-table sticky">
             <!columns>
                 <thead>
                     <tr>
@@ -79,17 +79,17 @@
     </div>
 
 
-    <!Pre loader function>
-        <script>
-            function pre_loader() {
-                let loader = document.getElementById("loader");
-                setTimeout(function () {
-                    loader.style.display = "none";
-                }, 750)
-            }
+<!--    <!Pre loader function>-->
+<!--        <script>-->
+<!--            function pre_loader() {-->
+<!--                let loader = document.getElementById("loader");-->
+<!--                setTimeout(function () {-->
+<!--                    loader.style.display = "none";-->
+<!--                }, 750)-->
+<!--            }-->
 
-            pre_loader()
-        </script>
+<!--            pre_loader()-->
+<!--        </script>-->
 
 </body>
 

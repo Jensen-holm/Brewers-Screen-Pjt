@@ -4,13 +4,13 @@ import matplotlib
 from static.plots.plot import path_2_plots
 import pandas as pd
 
-# set default themes to seaborn
+# set plot themes
 sns.set()
 matplotlib.use("svg")
-COLOR = "F5F5DCFF"
-matplotlib.rcParams['axes.labelcolor'] = COLOR
-matplotlib.rcParams['xtick.color'] = COLOR
-matplotlib.rcParams['ytick.color'] = COLOR
+# COLOR = "F5F5DCFF"
+# matplotlib.rcParams['axes.labelcolor'] = COLOR
+# matplotlib.rcParams['xtick.color'] = COLOR
+# matplotlib.rcParams['ytick.color'] = COLOR
 
 
 def k_zone(player_df: pd.DataFrame, ax) -> None:
@@ -32,7 +32,7 @@ def save_plot(fig) -> None:
 def plot(player_df: pd.DataFrame, default: bool) -> None:
     fig, ax = plt.subplots(1, 2)
 
-    fig.patch.set_facecolor("#332f2f")
+    # fig.patch.set_facecolor("#000000")
     fig.set_figheight(4)
     fig.set_figwidth(6)
 

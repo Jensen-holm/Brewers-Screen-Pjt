@@ -15,7 +15,6 @@ app = Flask(
 @app.route("/hitter_result", methods=["GET", "POST"])
 @app.route("/pitcher_result", methods=["GET", "POST"])
 def index():
-
     # if this function is removed out of this function it will not work for flask
     def check_page(path: request.path):
         return "Batter" if "hitter" in path else "Pitcher"
@@ -32,6 +31,7 @@ def index():
     plt_data = tbl.df()
     plot(plt_data, default=True)
 
+    # when user inputs a pitcher
     if request.method == "POST":
         pos_page: str = check_page(request.path)
         unique_players = tbl.unique(pos_page)
@@ -47,7 +47,7 @@ def index():
         headers=headers,
         data=data,
         player_name=player_name,
-        unique_players=unique_players
+        unique_players=unique_players,
     )
 
 
