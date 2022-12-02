@@ -11,7 +11,7 @@ app = Flask(
 )
 
 
-@app.route("/", methods=["GET"])
+@app.route("/pitchers", methods=["GET"])
 @app.route("/hitters", methods=["GET"])
 @app.route("/hitter_result", methods=["GET", "POST"])
 @app.route("/pitcher_result", methods=["GET", "POST"])
@@ -43,6 +43,13 @@ def index():
         data=data,
         player_name=player_name,
         unique_players=unique_players,
+    )
+
+
+@app.route("/", methods=["GET"])
+def home():
+    return render_template(
+        "home.html"
     )
 
 
