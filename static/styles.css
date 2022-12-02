@@ -13,7 +13,6 @@
 /*}*/
 
 
-
 .center_img {
     display: block;
     margin-left: auto;
@@ -88,7 +87,6 @@ td {
     text-align: center;
     color: #000000;
     text-shadow: black;
-    padding-top: 10px;
 }
 
 .input {
@@ -100,4 +98,5 @@ td {
     font-weight: bold;
     text-align: center;
     color: #000000;
+    padding-top: 2%;
 }
