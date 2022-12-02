@@ -19,19 +19,23 @@
     </div>
 
     <div class="center page_title">
-        <h1>{{ player_name }}</h1>
+        <h1>{{ pos_page }} Analysis</h1>
     </div>
 
     <div id="loader"></div>
 
     <div class="player_name_header center">
-
+        <h3>{{ player_name }}</h3>
         <! Should make the date dynamic>
         <p>4/23/22</p>
     </div>
 
     <div>
-        <form action="/result" method="POST" autocomplete="on" class="input">
+        {% if pos_page == "Pitcher" %}
+        <form action="/pitcher_result" method="POST" autocomplete="on" class="input">
+        {% else %}
+        <form action="/hitter_result" method="POST" autocomplete="on" class="input">
+        {% endif %}
             <input id="player_name_input" name="player_name_input" type="text" list="player_name" class="input" placeholder="type {{ pos_page }}'s name ...">
             <datalist id="player_name">
                 {% for player in unique_players %}

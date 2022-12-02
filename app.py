@@ -10,11 +10,9 @@ app = Flask(
 )
 
 
-
-
 @app.route("/", methods=["GET"])
 @app.route("/hitters", methods=["GET"])
-def data_table():
+def index():
 
     pos_page = "Pitcher"
     if "hitters" in request.path:
@@ -40,19 +38,19 @@ def data_table():
     )
 
 
-@app.route("/result", methods=["GET", "POST"])
+@app.route("/pitcher_result", methods=["GET", "POST"])
+@app.route("/hitter_result", methods=["GET", "POST"])
 def result_table():
 
     pos_page = "Pitcher"
-
-
+    if "hitter" in request.path:
+        pos_page = "Batter"
 
     if request.method == "POST":
+
         unique_players = tbl.unique(pos_page)
         player_name = request.form["player_name_input"].strip()
-
         plyr_sub = tbl.subset_data(pos_page, player_name)
-
         data = plyr_sub.to_numpy()
         headers = plyr_sub.columns
         plot(plyr_sub, default=False)

@@ -32,7 +32,11 @@
     </div>
 
     <div>
-        <form name="player_name" action="/result" method="POST" autocomplete="on" class="input">
+        {% if pos_page == "Pitcher" %}
+        <form action="/pitcher_result" method="POST" autocomplete="on" class="input">
+        {% else %}
+        <form action="/hitter_result" method="POST" autocomplete="on" class="input">
+        {% endif %}
            <input id="player_name_input" name="player_name_input" type="text" list="player_name" class="input" placeholder="type {{ pos_page }}'s name ..."> 
            <datalist id="player_name">
                 {% for player in unique_players %}
