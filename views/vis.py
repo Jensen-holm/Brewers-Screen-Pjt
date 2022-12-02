@@ -4,19 +4,25 @@ import matplotlib
 from static.plots.plot import path_2_plots
 import pandas as pd
 
-
 # set default themes to seaborn
 sns.set()
 matplotlib.use("svg")
+COLOR = "F5F5DCFF"
+matplotlib.rcParams['axes.labelcolor'] = COLOR
+matplotlib.rcParams['xtick.color'] = COLOR
+matplotlib.rcParams['ytick.color'] = COLOR
 
 
 def k_zone(player_df: pd.DataFrame, ax) -> None:
-    ax[0, 0].scatter(
-        player_df["PlateLocSide"],
-        player_df["PlateLocHeight"]
+    sns.scatterplot(
+        player_df,
+        x="PlateLocSide",
+        y="PlateLocHeight",
+        hue="TaggedPitchType",
+        ax=ax[0]
     )
-
-    ax[0, 0].set_title("K Zone")
+    ax[0].set_xlim(-3, 3)
+    ax[0].set_ylim(-2, 7)
 
 
 def save_plot(fig) -> None:
@@ -24,7 +30,12 @@ def save_plot(fig) -> None:
 
 
 def plot(player_df: pd.DataFrame, default: bool) -> None:
-    fig, ax = plt.subplots(2, 2)
+    fig, ax = plt.subplots(1, 2)
+
+    fig.patch.set_facecolor("#332f2f")
+    fig.set_figheight(4)
+    fig.set_figwidth(6)
+
     k_zone(player_df, ax=ax)
     save_plot(fig)
 
