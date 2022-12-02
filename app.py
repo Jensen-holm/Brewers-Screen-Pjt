@@ -12,11 +12,15 @@ app = Flask(
 
 @app.route("/", methods=["GET"])
 @app.route("/hitters", methods=["GET"])
+@app.route("/hitter_result", methods=["GET", "POST"])
+@app.route("/pitcher_result", methods=["GET", "POST"])
 def index():
 
-    pos_page = "Pitcher"
-    if "hitters" in request.path:
-        pos_page = "Batter"
+    # if this function is removed out of this function it will not work for flask
+    def check_page(path: request.path):
+        return "Batter" if "hitter" in path else "Pitcher"
+
+    pos_page: str = check_page(request.path)
 
     # default data
     player_name: str = "Texas vs. Arkansas"
@@ -28,26 +32,8 @@ def index():
     plt_data = tbl.df()
     plot(plt_data, default=True)
 
-    return render_template(
-        "index.html",
-        pos_page=pos_page,
-        headers=headers,
-        data=data,
-        player_name=player_name,
-        unique_players=unique_players
-    )
-
-
-@app.route("/pitcher_result", methods=["GET", "POST"])
-@app.route("/hitter_result", methods=["GET", "POST"])
-def result_table():
-
-    pos_page = "Pitcher"
-    if "hitter" in request.path:
-        pos_page = "Batter"
-
     if request.method == "POST":
-
+        pos_page: str = check_page(request.path)
         unique_players = tbl.unique(pos_page)
         player_name = request.form["player_name_input"].strip()
         plyr_sub = tbl.subset_data(pos_page, player_name)
@@ -56,7 +42,7 @@ def result_table():
         plot(plyr_sub, default=False)
 
     return render_template(
-        "player_result.html",
+        "index.html",
         pos_page=pos_page,
         headers=headers,
         data=data,
