@@ -10,12 +10,9 @@ app = Flask(
 )
 
 
-@app.route("/")
-def index():
-    return render_template("index.html")
 
 
-@app.route("/pitchers", methods=["GET"])
+@app.route("/", methods=["GET"])
 @app.route("/hitters", methods=["GET"])
 def data_table():
 
@@ -34,7 +31,7 @@ def data_table():
     plot(plt_data, default=True)
 
     return render_template(
-        "player_result.html",
+        "index.html",
         pos_page=pos_page,
         headers=headers,
         data=data,
@@ -48,10 +45,14 @@ def result_table():
 
     pos_page = "Pitcher"
 
+
+
     if request.method == "POST":
         unique_players = tbl.unique(pos_page)
         player_name = request.form["player_name_input"].strip()
-        plyr_sub = tbl.subset_hitter(player_name)
+
+        plyr_sub = tbl.subset_data(pos_page, player_name)
+
         data = plyr_sub.to_numpy()
         headers = plyr_sub.columns
         plot(plyr_sub, default=False)
