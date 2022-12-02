@@ -15,4 +15,7 @@ install dependencies <br>
 <br>
 run application <br>
 `python3 app.py` <br>
+<br>
+open browser at `http://127.0.0.1:3000/`
+
 
