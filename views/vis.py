@@ -1,10 +1,9 @@
+from static.plots.plot import path_2_plots
+from views.plots.k_zone import k_zone
+from views.plots.spd_vs_spin import spin_vs_mph
 import matplotlib.pyplot as plt
 import seaborn as sns
 import matplotlib
-from static.plots.plot import path_2_plots
-import pandas as pd
-from k_zone import k_zone
-from spd_vs_spin import spin_vs_mph
 
 # set plot themes
 sns.set()
@@ -21,7 +20,7 @@ def save_plot(fig) -> None:
     fig.savefig(path_2_plots + "player_result_plot.svg")
 
 
-def plot(player_df: pd.DataFrame, player_pos: str) -> None:
+def plot(player_df, player_pos: str) -> None:
     fig, ax = plt.subplots(1, 2)
 
     # fig.patch.set_facecolor("#555555")
