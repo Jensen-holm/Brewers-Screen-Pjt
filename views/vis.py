@@ -24,7 +24,7 @@ def k_zone(player_df: pd.DataFrame, ax) -> None:
     Strike zone dimensions are according to the pitch-grader
     universal strikezone (https://www.baseballprospectus.com/news/article/40891/prospectus-feature-the-universal-strike-zone/)
     :param player_df:
-    :param ax:
+    :param ax: list of axes to plot on, for the k zone we want to use the first one
     :return:
     """
     sns.scatterplot(
@@ -35,7 +35,7 @@ def k_zone(player_df: pd.DataFrame, ax) -> None:
         ax=ax[0]
     )
     ax[0].set_xlim(-2.25, 2.25)
-    ax[0].set_ylim(-1, 5)
+    ax[0].set_ylim(-1, 5.25)
 
     # plotting strike zone rectangle
     sz_left_max = -in_2_ft((19.94 / 2))
@@ -43,6 +43,8 @@ def k_zone(player_df: pd.DataFrame, ax) -> None:
     sz_height = in_2_ft(25.79)
     sz_bottom = in_2_ft(18.29)
     ax[0].add_patch(plt.Rectangle((sz_left_max, sz_bottom), sz_right_max, sz_height, fc="none", ec="red"))
+    plt.setp(ax[0].get_legend().get_texts(), fontsize="7")
+    plt.setp(ax[0].get_legend().get_title(), fontsize="7")
 
 
 def save_plot(fig) -> None:
