@@ -21,19 +21,18 @@ def save_plot(fig) -> None:
 
 
 def plot(player_df, player_pos: str) -> None:
-    fig, ax = plt.subplots(1, 2)
+    fig, ax = plt.subplots(1, 3)
 
     # fig.patch.set_facecolor("#555555")
-    fig.tight_layout(pad=2.0)
     fig.set_figheight(8)
-    fig.set_figwidth(12)
+    fig.set_figwidth(24)
 
-    k_zone(player_df, ax=ax[0])
+    k_zone(player_df, ax=ax[0], title="Strike Zone w/ Pitch Type")
+    k_zone(player_df, ax=ax[1], color_by="TaggedHitType", title="Strike Zone w/ Hit Type")
 
     # if it's a pitcher
     if player_pos == "Pitcher":
-        spin_vs_mph(player_df, ax[1])
+        spin_vs_mph(player_df, ax[2])
     elif player_pos == "Batter":
-        print('batter plot')
-
+        print("batter plt")
     save_plot(fig)

@@ -10,9 +10,7 @@ def result(tbl, player_name, pos_page):
     :return:
     """
     unique_players = tbl.unique(pos_page)
-    plyr_sub = tbl.subset_data(pos_page, player_name)[
-        ["Pitcher", "PitcherTeam", "PitcherThrows", "Batter", "BatterTeam", "TaggedPitchType", "PitchCall",
-         "PlateLocSide", "PlateLocHeight", "RelSpeed", "SpinRate"]]
+    plyr_sub = tbl.subset_data(pos_page, player_name)
     data = plyr_sub.to_numpy()
     headers = plyr_sub.columns
     plot(plyr_sub, pos_page)

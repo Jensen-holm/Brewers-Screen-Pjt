@@ -50,6 +50,11 @@ def index():
 # home screen
 @app.route("/", methods=["GET"])
 def home():
+    """
+    Renders home.html file, serves as the home page with a data
+    dictionary as well as a few notes
+    :return home.html:
+    """
     return render_template(
         "home.html"
     )
