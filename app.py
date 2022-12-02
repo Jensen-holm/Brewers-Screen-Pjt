@@ -2,6 +2,8 @@ from flask import Flask, render_template, request
 import os
 from views.table import tbl
 from views.vis import plot
+from routes.default import default
+from routes.result import result
 
 app = Flask(
     __name__,
@@ -19,27 +21,20 @@ def index():
     def check_page(path: request.path):
         return "Batter" if "hitter" in path else "Pitcher"
 
-    pos_page: str = check_page(request.path)
-
     # default data
-    player_name: str = "Texas vs. Arkansas"
-    headers = tbl.cols()
-    data = tbl.data()
-    unique_players = tbl.unique(pos_page)
-
-    # default plot
-    plt_data = tbl.df()
-    plot(plt_data, default=True)
+    pos_page: str = check_page(request.path)
+    player_name, headers, data, unique_players = default(tbl, pos_page)
 
     # when user inputs a pitcher
     if request.method == "POST":
         pos_page: str = check_page(request.path)
-        unique_players = tbl.unique(pos_page)
         player_name = request.form["player_name_input"].strip()
-        plyr_sub = tbl.subset_data(pos_page, player_name)
-        data = plyr_sub.to_numpy()
-        headers = plyr_sub.columns
-        plot(plyr_sub, default=False)
+
+        data, headers, unique_players = result(
+            tbl,
+            player_name,
+            pos_page
+        )
 
     return render_template(
         "index.html",
