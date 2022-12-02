@@ -1,9 +1,8 @@
 from flask import Flask, render_template, request
-import os
 from views.table import tbl
-from views.vis import plot
 from routes.default import default
 from routes.result import result
+import os
 
 app = Flask(
     __name__,
@@ -17,7 +16,13 @@ app = Flask(
 @app.route("/hitter_result", methods=["GET", "POST"])
 @app.route("/pitcher_result", methods=["GET", "POST"])
 def index():
-    # if this function is removed out of this function it will not work for flask
+    """
+    Main function for the index.html template
+    Takes no arguments, most of the logic handling
+    requests is inside the routes' module
+    :return index.html file with data depending on user:
+    """
+
     def check_page(path: request.path):
         return "Batter" if "hitter" in path else "Pitcher"
 
@@ -29,12 +34,7 @@ def index():
     if request.method == "POST":
         pos_page: str = check_page(request.path)
         player_name = request.form["player_name_input"].strip()
-
-        data, headers, unique_players = result(
-            tbl,
-            player_name,
-            pos_page
-        )
+        data, headers, unique_players = result(tbl, player_name, pos_page)
 
     return render_template(
         "index.html",
