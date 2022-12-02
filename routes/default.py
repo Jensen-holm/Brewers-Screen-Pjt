@@ -11,9 +11,11 @@ def default(tbl, pos_page):
     data = tbl.data()
     unique_players = tbl.unique(pos_page)
     plot(tbl.df(), pos_page)
+    plyr_team = "default"
     return (
         player_name,
         headers,
         data,
-        unique_players
+        unique_players,
+        plyr_team
     )

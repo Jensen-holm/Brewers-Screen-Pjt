@@ -28,6 +28,12 @@
     <div class="player_name_header">
         <h2>{{ player_name }}</h2>
 
+        {% if plyr_team == "TEX_AGG" %}
+            <img class="center_img" src="/static/assets/longhorn.jpg" alt="texas aggies">
+        {% elif plyr_team == "ARK_RAZ" %}
+            <img class="center_img" src="/static/assets/raz.jpg" alt="razorbacks">
+        {% endif %}
+
         <! Should make the date dynamic>
         <p>4/23/22</p>
     </div>
