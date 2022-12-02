@@ -35,7 +35,7 @@ class CSV:
 
     def subset_data(self, col: str, val) -> pd.DataFrame:
         assert (col in self.cols())
-        return self.df()[self.df()[col] == val]
+        return self.df()[self.df()[col] == val].reset_index() # maybe we dont wanna reset index??
 
     def unique(self, col) -> list:
         return self.df()[col].unique().tolist()
