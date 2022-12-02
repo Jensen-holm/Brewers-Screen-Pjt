@@ -13,13 +13,14 @@
 /*}*/
 
 
+
 .center_img {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 30%;
+    width: 45%;
     height: 30%;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 .content-table {
@@ -49,7 +50,7 @@ th {
 
 td {
     padding: 8px;
-    color: beige;
+    color: #ffffff;
 }
 
 

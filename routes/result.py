@@ -13,7 +13,7 @@ def result(tbl, player_name, pos_page):
     plyr_sub = tbl.subset_data(pos_page, player_name)
     data = plyr_sub.to_numpy()
     headers = plyr_sub.columns
-    plot(plyr_sub, default=False)
+    plot(plyr_sub, pos_page)
     return (
         data,
         headers,

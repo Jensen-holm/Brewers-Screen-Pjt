@@ -27,11 +27,11 @@ class CSV:
     def data(self) -> np.array:
         return self.df().to_numpy()
 
-    def subset_hitter(self, hitter_name: str) -> pd.DataFrame:
-        return self.df()[self.df()["Batter"] == hitter_name]
+    def subset_hitter(self, hitter_name: str):
+        return CSV(_df=self.df()[self.df()["Batter"] == hitter_name])
 
-    def subset_pitcher(self, pitcher_name: str) -> pd.DataFrame:
-        return self.df()[self.df()["Pitcher"] == pitcher_name]
+    def subset_pitcher(self, pitcher_name: str):
+        return CSV(_df=self.df()[self.df()["Pitcher"] == pitcher_name])
 
     def subset_data(self, col: str, val) -> pd.DataFrame:
         assert (col in self.cols())
@@ -39,6 +39,9 @@ class CSV:
 
     def unique(self, col) -> list:
         return self.df()[col].unique().tolist()
+
+    def get_not_nan(self, col):
+        return self.df()[self.df()[col].notna()]
 
 
 tbl = CSV()
