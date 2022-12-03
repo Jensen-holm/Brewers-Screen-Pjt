@@ -1,21 +1,23 @@
 from views.vis import plot
 
 
-def default(tbl, pos_page):
+# use filter param to decide which dataframe to show on the table,
+# maybe map it to a button on the page
+
+def default(tbl, pos_page, filter: bool = True):
     """
-    Returns default data for the main route to handle
     :return:
     """
-    player_name: str = "Texas vs. Arkansas"
-    headers = tbl.cols()
-    data = tbl.data()
-    unique_players = tbl.unique(pos_page)
+    # making it like this so that it will be dynamic if data
+    # from a different game were imported, it would show their names
+    player_name: str = f"{tbl.df().at[0, 'BatterTeam']} " \
+                       f"@ " \
+                       f"{tbl.df().at[0, 'PitcherTeam']}"
     plot(tbl.df(), pos_page)
-    plyr_team = "default"
     return (
         player_name,
-        headers,
-        data,
-        unique_players,
-        plyr_team
+        tbl.display_cols(),
+        tbl.display_tbl(),
+        tbl.unique(pos_page),
+        "default"
     )

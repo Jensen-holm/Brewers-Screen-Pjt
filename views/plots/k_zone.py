@@ -8,7 +8,7 @@ def in_2_ft(inches: float) -> float:
     return inches / 12
 
 
-def k_zone(player_df: pd.DataFrame, ax, color_by="TaggedPitchType", title="") -> None:
+def k_zone(player_df: pd.DataFrame, ax, color_by="TaggedPitchType", title="", cp="deep") -> None:
     """
     Strike zone dimensions are according to the pitch-grader
     universal strike zone (https://www.baseballprospectus.com/news/article/40891/prospectus-feature-the-universal-strike-zone/)
@@ -16,8 +16,11 @@ def k_zone(player_df: pd.DataFrame, ax, color_by="TaggedPitchType", title="") ->
     :param ax: list of axes to plot on, for the k zone we want to use the first one
     :param color_by:
     :param title;
+    :param cp:
     :return:
     """
+
+    sns.color_palette(cp)
 
     sns.scatterplot(
         player_df,

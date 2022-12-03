@@ -28,13 +28,21 @@ def index():
 
     # default data
     pos_page: str = check_page(request.path)
-    player_name, headers, data, unique_players, plyr_team = default(tbl, pos_page)
+
+    (player_name, headers,
+     data, unique_players,
+     plyr_team
+     ) = default(tbl, pos_page)
 
     # when user inputs a pitcher
     if request.method == "POST":
         pos_page: str = check_page(request.path)
         player_name = request.form["player_name_input"].strip()
-        data, headers, unique_players, plyr_team = result(tbl, player_name, pos_page)
+        data, headers, unique_players, plyr_team = result(
+            tbl,
+            player_name,
+            pos_page
+        )
 
     return render_template(
         "index.html",

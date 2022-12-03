@@ -1,4 +1,4 @@
-from views.table import CSV
+from views.table import TrackmanData
 from dataclasses import dataclass
 import pandas as pd
 
@@ -7,7 +7,8 @@ import pandas as pd
 class Player:
     _name: str
     _pos: str
-    _df: CSV
+    _team: str
+    _df: TrackmanData
 
     def name(self) -> str:
         return self._name

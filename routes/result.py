@@ -9,15 +9,11 @@ def result(tbl, player_name, pos_page):
     :param pos_page:
     :return:
     """
-    unique_players = tbl.unique(pos_page)
     plyr_sub = tbl.subset_data(pos_page, player_name)
-    data = plyr_sub.to_numpy()
-    headers = plyr_sub.columns
-    plot(plyr_sub, pos_page)
-    plyr_team = plyr_sub.at[0, pos_page + "Team"]
+    plot(plyr_sub.df(), pos_page)
     return (
-        data,
-        headers,
-        unique_players,
-        plyr_team
+        plyr_sub.display_tbl(),
+        plyr_sub.display_cols(),
+        tbl.unique(pos_page),
+        plyr_sub.df().at[0, pos_page + "Team"]
     )

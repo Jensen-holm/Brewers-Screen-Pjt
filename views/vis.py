@@ -30,12 +30,13 @@ def plot(player_df, player_pos: str) -> None:
         player_df,
         ax=ax[1],
         color_by="PitchResult",
-        title="Strike Zone w/ Result Type"
+        title="Strike Zone w/ Result Type",
+        cp="icefire"
     )
 
     # if it's a pitcher
     if player_pos == "Pitcher":
         spin_vs_mph(player_df, ax[2])
     elif player_pos == "Batter":
-        print("batter plt")
+        print("batter")
     save_plot(fig)

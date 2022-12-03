@@ -3,10 +3,11 @@ from pandas import Index
 import numpy as np
 from data.fp import path_to_data as fp
 from dataclasses import dataclass, field
+from views.cols import display_cols
 
 
 @dataclass
-class CSV:
+class TrackmanData:
     _path: str = fp
     _df: pd.DataFrame = field(
         default_factory=lambda: pd.DataFrame()
@@ -27,19 +28,21 @@ class CSV:
     def data(self) -> np.array:
         return self.df().to_numpy()
 
-    def subset_hitter(self, hitter_name: str):
-        return CSV(_df=self.df()[self.df()["Batter"] == hitter_name])
-
-    def subset_pitcher(self, pitcher_name: str):
-        return CSV(_df=self.df()[self.df()["Pitcher"] == pitcher_name])
-
-    def subset_data(self, col: str, val) -> pd.DataFrame:
+    def subset_data(self, col: str, val):
         assert (col in self.cols())
-        return self.df()[self.df()[col] == val].reset_index()  # maybe we dont wanna reset index??
+        return TrackmanData(_df=self.df()[self.df()[col] == val].reset_index())
 
     def unique(self, col) -> list:
+        assert (col in self.cols())
         return self.df()[col].unique().tolist()
 
+    @staticmethod
+    def display_cols() -> list[str]:
+        return display_cols
 
-tbl = CSV()
+    def display_tbl(self):
+        return self.df()[self.display_cols()].to_numpy()
+
+
+tbl = TrackmanData()
 tbl.read()
