@@ -11,5 +11,5 @@ def spin_vs_mph(pitcher_df, ax, title="Spin Rate vs. MPH") -> None:
         s=100
     )
     ax.set_xlim(60, 100)
-    ax.set_ylim(1500, 3500)
+    ax.set_ylim(900, 3500)
     ax.title.set_text(title)
