@@ -41,7 +41,7 @@ def index(tbl: TrackmanData = TrackmanData()):
      ) = default(tbl, pos_page)
 
     # when user inputs a pitcher
-    if request.method == "POST":
+    if request.method == "POST" and request.origin != "/":
         pos_page: str = check_page(request.path)
         player_name = request.form["player_name_input"].strip()
         data, headers, unique_players, plyr_team = result(
@@ -49,6 +49,10 @@ def index(tbl: TrackmanData = TrackmanData()):
             player_name,
             pos_page
         )
+
+    if request.method == "POST" and request.origin == "/":
+        # read the csv data and plug it in
+        return
 
     return render_template(
         "index.html",
@@ -79,24 +83,6 @@ def home():
     dictionary as well as a few notes
     :return home.html:
     """
-    if request.method == "POST":
-        if "file" not in request.files:
-            return render_template(
-                "home.html",
-                success="No file found in request"
-            )
-        if not allowed_file(request.form["trackman_csv"]):
-            return render_template(
-                "home.html",
-                success="Invalid file type"
-            )
-
-        # if there were no problems, insert the csv into the analysis pages
-        # will need to save it into the data folder
-        return render_template(
-            "index.html",
-        )
-
     return render_template(
         "home.html",
         success="team photos will only be shown for default csv"
