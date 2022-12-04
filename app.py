@@ -1,8 +1,7 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request
 from views.table import tbl
 from routes.default import default
 from routes.result import result
-import pandas as pd
 import os
 
 app = Flask(
@@ -10,8 +9,6 @@ app = Flask(
     template_folder="templates",
     static_folder="static"
 )
-
-app.config["UPLOAD_FOLDER"] = os.getcwd() + "/data/"
 
 
 @app.route("/pitchers", methods=["GET"])
@@ -69,23 +66,7 @@ def home():
     """
     return render_template(
         "home.html",
-        success="team photos will only be shown for default csv",
-        available_games=[]
     )
-
-
-def allowed_file(file_name: str) -> bool:
-    return True
-
-
-@app.route("/update_db", methods=["POST"])
-def upload_csv():
-    uploaded_file = request.files["file"]
-
-    if allowed_file(uploaded_file.filename):
-        file_path = os.path.join(app.config["UPLOAD_FOLDER"], uploaded_file.filename)
-        uploaded_file.save(file_path)
-    return redirect(url_for("index"))
 
 
 if __name__ == "__main__":
