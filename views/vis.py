@@ -12,10 +12,22 @@ matplotlib.use("svg")
 
 
 def save_plot(fig) -> None:
+    """
+    Saves a given plot into our assets' folder
+    :param fig: the matplotlib figure object we want to save
+    :return: saved svg of plots in the assets folder
+    """
     fig.savefig(path_2_plots + "player_result_plot.svg")
 
 
 def plot(player_df, player_pos: str) -> None:
+    """
+    The main function to be run in order to generate
+    the 1 x 3 row of graphs based on the current app view
+    :param player_df: subset of the data to plot from
+    :param player_pos: if the player is a "Pitcher" or "Batter"
+    :return: saves the plot as an svg file in our assets folder
+    """
     fig, ax = plt.subplots(1, 3)
 
     fig.set_figheight(8)

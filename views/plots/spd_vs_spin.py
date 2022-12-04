@@ -3,6 +3,14 @@ import seaborn as sns
 
 # a pitcher only plot
 def spin_vs_mph(pitcher_df, ax, title="Spin Rate vs. MPH") -> None:
+    """
+    Plots a pitchers spin rate versus the release speed of the ball
+    grouped by the tagged type of the pitch
+    :param pitcher_df: pitchers' subset of the data
+    :param ax: the subplot we want to put this graph on
+    :param title: the title of the plot
+    :return: adds the plot to the given subplot
+    """
     sns.scatterplot(
         pitcher_df,
         x="RelSpeed",

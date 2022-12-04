@@ -14,10 +14,10 @@ def k_zone(player_df: pd.DataFrame, ax, color_by="TaggedPitchType", title="", cp
     universal strike zone (https://www.baseballprospectus.com/news/article/40891/prospectus-feature-the-universal-strike-zone/)
     :param player_df:
     :param ax: list of axes to plot on, for the k zone we want to use the first one
-    :param color_by:
-    :param title;
-    :param cp:
-    :return:
+    :param color_by: variable in which to color the ball locations by
+    :param title: title of the sub-plot
+    :param cp: seaborn color palette
+    :return: adds the k_zone plot to the given subplot
     """
 
     sns.color_palette(cp)

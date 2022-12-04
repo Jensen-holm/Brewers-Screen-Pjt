@@ -13,8 +13,14 @@
     margin-top: 2%;
 }
 
+.home_img {
+    display: block;
+    margin: 2% auto 0;
+}
+
+
 .centered {
-    position: absolute;
+    position: relative;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -114,4 +120,5 @@ td {
 
 .notes {
     text-align: center;
+    margin-top: 0;
 }

@@ -4,7 +4,6 @@
 <head>
     <link type="image/x-icon" rel="icon" href="{{ url_for("static", filename="/assets/brew.png" ) }}" />
     <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="styles.css" ) }}" />
-    <link rel="script" href="{{ url_for("static", filename="table.js" ) }}" />
     <title>Brew Crew</title>
 </head>
 
@@ -65,7 +64,7 @@
                 <thead>
                     <tr>
                         {% for header in headers %}
-                        <th onclick=sortTable()>{{ header }}</th>
+                        <th>{{ header }}</th>
                         {% endfor %}
                     </tr>
                 </thead>

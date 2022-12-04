@@ -7,6 +7,15 @@ from PIL import Image
 
 
 def spray_chart(player_df: pd.DataFrame, ax):
+    """
+    Calculates the coordinates of the landing point of the ball in feet
+    and plots it on top of the Milwaulkee Brewers field dimensions.
+    I understand that I could make the calculation separate from the plotting
+    but for the sake of this application I want this calculation to be noticed
+    :param player_df: Pandas dataframe containing the players' subset
+    :param ax: graph to put the spray chart on
+    :return: Nothing
+    """
     dist = player_df["Distance"].to_numpy()
     angle = player_df["Direction"].to_numpy()
 

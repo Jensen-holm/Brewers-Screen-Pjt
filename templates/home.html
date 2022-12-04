@@ -4,7 +4,6 @@
 <head>
     <link type="image/x-icon" rel="icon" href="{{ url_for("static", filename="/assets/brew.png" ) }}" />
     <link type="text/css" rel="stylesheet" href="{{ url_for("static", filename="styles.css" ) }}" />
-    <link rel="script" href="{{ url_for("static", filename="table.js" ) }}" />
     <title>Brew Crew</title>
 </head>
 
@@ -21,8 +20,19 @@
         <h1>Trackman Scouting Reports</h1>
     </div>
 
-    <div class="centered">
-        <img src="/static/assets/brew.png" class="home_img" alt="home logo">
+    <div>
+        <img class="home_img" src="/static/assets/brew.png" alt="home logo">
+    </div>
+
+    <div class="notes">
+        <h4>Notes</h4>
+        <p>I tried my best to make this flexible enough to read in any Trackman dataset without</p>
+        <p>spending too much time worrying about scalability. If I were to spend more time on this</p>
+        <p>project, I would like to add functionality that would allow the user to upload a csv file</p>
+        <p>to the server, and then if that data was Trackman data, read it into a database instead of</p>
+        <p>reading directly from csv files and make the tables sortable and downloadable.</p>
+        <p>That being said I am very proud of this project and I hope you enjoy this as much as I did making it!</p>
+        <p> - Jensen Holm</p>
     </div>
 
 </body>

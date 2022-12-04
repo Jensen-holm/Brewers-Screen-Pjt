@@ -1,4 +1,4 @@
-display_cols = [
+display_cols: list[str] = [
     "PitchNo",
     "PAofInning",
     "PitchofPA",
