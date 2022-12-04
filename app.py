@@ -31,18 +31,20 @@ def index():
 
     (player_name, headers,
      data, unique_players,
-     plyr_team
+     plyr_team, side
      ) = default(tbl, pos_page)
 
     # when user inputs a player name
     if request.method == "POST":
         pos_page: str = check_page(request.path)
         player_name = request.form["player_name_input"].strip()
-        data, headers, unique_players, plyr_team = result(
+        data, headers, unique_players, plyr_team, side = result(
             tbl,
             player_name,
             pos_page
         )
+
+    print(str(request.path))
 
     return render_template(
         "index.html",
@@ -51,13 +53,13 @@ def index():
         data=data,
         player_name=player_name,
         unique_players=unique_players,
-        plyr_team=plyr_team
+        plyr_team=plyr_team,
+        side=side,
+        route=str(request.path)
     )
 
 
-@app.route("/", methods=["GET", "POST"])
-@app.route("/pitchers_custom", methods=["GET", "POST"])
-@app.route("/hitters_custom", methods=["GET", "POST"])
+@app.route("/")
 def home():
     """
     Renders home.html file, serves as the home page with a data

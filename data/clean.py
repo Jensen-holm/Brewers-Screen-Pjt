@@ -1,4 +1,3 @@
-import sqlite3
 import pandas as pd
 
 
@@ -21,5 +20,12 @@ def main():
     df.to_csv("20220423-Olsen-1.csv")
 
 
+def normalize_handedness():
+    df: pd.DataFrame = pd.read_csv("20220423-Olsen-1.csv")
+    df["PitcherSide"] = df["PitcherThrows"]
+    df.to_csv("20220423-Olsen-1.csv")
+
+
 if __name__ == "__main__":
     main()
+    normalize_handedness()

@@ -15,5 +15,6 @@ def result(tbl, player_name, pos_page):
         plyr_sub.display_tbl(),
         plyr_sub.display_cols(),
         tbl.unique(pos_page),
-        plyr_sub.df().at[0, pos_page + "Team"]
+        plyr_sub.df().at[0, pos_page + "Team"],
+        plyr_sub.df().at[0, pos_page + "Side"]
     )

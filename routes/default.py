@@ -4,7 +4,7 @@ from views.vis import plot
 # use filter param to decide which dataframe to show on the table,
 # maybe map it to a button on the page
 
-def default(tbl, pos_page, filter: bool = True):
+def default(tbl, pos_page):
     """
     :return:
     """
@@ -19,5 +19,6 @@ def default(tbl, pos_page, filter: bool = True):
         tbl.display_cols(),
         tbl.display_tbl(),
         tbl.unique(pos_page),
-        "default"
+        "default",
+        ""
     )

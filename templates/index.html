@@ -24,6 +24,12 @@
     <div class="player_name_header">
         <h2>{{ player_name }}</h2>
 
+        {% if pos_page == "Batter"  and route != "/hitters" %}
+            <p>Hits: {{ side }}</p>
+        {% elif pos_page == "Pitcher" and route != "/pitchers" %}
+            <p>Throws: {{ side }}</p>
+        {% endif %}
+
         {% if plyr_team == "TEX_AGG" %}
             <img class="team_img" src="/static/assets/andm.png" alt="texas aggies">
         {% elif plyr_team == "ARK_RAZ" %}

@@ -1,7 +1,6 @@
 from static.plots.plot import path_2_plots
 from views.plots.k_zone import k_zone
 from views.plots.spd_vs_spin import spin_vs_mph
-from views.plots.la_vs_ev import la_ev
 from views.plots.spray_chart import spray_chart
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -36,11 +35,9 @@ def plot(player_df, player_pos: str) -> None:
         cp="icefire"
     )
 
-    # if it's a pitcher
     if player_pos == "Pitcher":
         spin_vs_mph(player_df, ax[2])
     elif player_pos == "Batter":
-        # la_ev(player_df, ax[2])
         spray_chart(player_df, ax[2])
 
     save_plot(fig)
