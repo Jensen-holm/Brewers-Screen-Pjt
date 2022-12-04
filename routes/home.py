@@ -1,1 +1,3 @@
-import app
+def available_games(db):
+
+    return

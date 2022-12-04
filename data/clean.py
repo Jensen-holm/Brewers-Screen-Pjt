@@ -1,3 +1,4 @@
+import sqlite3
 import pandas as pd
 
 
@@ -20,5 +21,10 @@ def main():
     df.to_csv("20220423-Olsen-1.csv")
 
 
-if __name__ == "__main__":
-    main()
+def create_db():
+    """
+    Also only running this once to make the sqlite3 db file
+    so that we can allow the users to add more game track-man game data
+    """
+    db = sqlite3.connect("Tman.db")
+    pd.read_csv("20220423-Olsen-1.csv").to_sql("default", db)

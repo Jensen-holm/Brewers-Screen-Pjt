@@ -1,9 +1,8 @@
-import pandas as pd
-from data.fp import path_to_data
-from flask import Flask, render_template, request
-from views.table import TrackmanData
+from flask import Flask, render_template, request, url_for, redirect
+from views.table import tbl
 from routes.default import default
 from routes.result import result
+import pandas as pd
 import os
 
 app = Flask(
@@ -12,22 +11,20 @@ app = Flask(
     static_folder="static"
 )
 
-app.config["UPLOAD_FOLDER"] = path_to_data.split("/")[:-1]
+app.config["UPLOAD_FOLDER"] = os.getcwd() + "/data/"
 
 
 @app.route("/pitchers", methods=["GET"])
 @app.route("/hitters", methods=["GET"])
 @app.route("/hitter_result", methods=["GET", "POST"])
 @app.route("/pitcher_result", methods=["GET", "POST"])
-def index(tbl: TrackmanData = TrackmanData()):
+def index():
     """
     Main function for the index.html template
     Takes no arguments, most of the logic handling
     requests is inside the routes' module
     :return index.html file with data depending on user:
     """
-
-    tbl.read()
 
     def check_page(path: request.path):
         return "Batter" if "hitter" in path else "Pitcher"
@@ -40,8 +37,8 @@ def index(tbl: TrackmanData = TrackmanData()):
      plyr_team
      ) = default(tbl, pos_page)
 
-    # when user inputs a pitcher
-    if request.method == "POST" and request.origin != "/":
+    # when user inputs a player name
+    if request.method == "POST":
         pos_page: str = check_page(request.path)
         player_name = request.form["player_name_input"].strip()
         data, headers, unique_players, plyr_team = result(
@@ -49,10 +46,6 @@ def index(tbl: TrackmanData = TrackmanData()):
             player_name,
             pos_page
         )
-
-    if request.method == "POST" and request.origin == "/":
-        # read the csv data and plug it in
-        return
 
     return render_template(
         "index.html",
@@ -63,15 +56,6 @@ def index(tbl: TrackmanData = TrackmanData()):
         unique_players=unique_players,
         plyr_team=plyr_team
     )
-
-
-ALLOWED_EXTENSIONS: set[str] = {
-    "csv"
-}
-
-
-def allowed_file(file):
-    return True if file.split(".")[-1] in ALLOWED_EXTENSIONS else False
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -85,8 +69,23 @@ def home():
     """
     return render_template(
         "home.html",
-        success="team photos will only be shown for default csv"
+        success="team photos will only be shown for default csv",
+        available_games=[]
     )
+
+
+def allowed_file(file_name: str) -> bool:
+    return True
+
+
+@app.route("/update_db", methods=["POST"])
+def upload_csv():
+    uploaded_file = request.files["file"]
+
+    if allowed_file(uploaded_file.filename):
+        file_path = os.path.join(app.config["UPLOAD_FOLDER"], uploaded_file.filename)
+        uploaded_file.save(file_path)
+    return redirect(url_for("index"))
 
 
 if __name__ == "__main__":
