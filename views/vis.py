@@ -52,3 +52,4 @@ def plot(player_df, player_pos: str) -> None:
         spray_chart(player_df, ax[2])
 
     save_plot(fig)
+    plt.close(fig)
