@@ -1,7 +1,7 @@
 from views.vis import plot
 
 
-def result(tbl, player_name, pos_page):
+def result(tbl, player_name: str, pos_page: str) -> tuple[any, any, any, any, any]:
     """
     When the user sends a post request to view player data
     :param tbl: player's subset of the dataframe

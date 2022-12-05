@@ -5,10 +5,11 @@ import math
 
 
 def in_2_ft(inches: float) -> float:
-    return inches / 12
+    return inches / 12.0
 
 
-def k_zone(player_df: pd.DataFrame, ax, color_by="TaggedPitchType", title="", cp="deep") -> None:
+def k_zone(player_df: pd.DataFrame, ax: plt.axis, color_by: str = "TaggedPitchType", title: str = "",
+           cp: str = "deep") -> None:
     """
     Strike zone dimensions are according to the pitch-grader
     universal strike zone (https://www.baseballprospectus.com/news/article/40891/prospectus-feature-the-universal-strike-zone/)

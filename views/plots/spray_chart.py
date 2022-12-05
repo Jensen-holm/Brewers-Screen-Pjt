@@ -6,23 +6,22 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 
-def spray_chart(player_df: pd.DataFrame, ax):
+def spray_chart(player_df: pd.DataFrame, ax: plt.axis) -> None:
     """
     Calculates the coordinates of the landing point of the ball in feet
-    and plots it on top of the Milwaulkee Brewers field dimensions.
+    and plots it on top of the Milwaukee Brewers field dimensions.
     I understand that I could make the calculation separate from the plotting
     but for the sake of this application I want this calculation to be noticed
     :param player_df: Pandas dataframe containing the players' subset
     :param ax: graph to put the spray chart on
     :return: Nothing
     """
-    dist = player_df["Distance"].to_numpy()
-    angle = player_df["Direction"].to_numpy()
+    dist, angle = player_df["Distance"].to_numpy(), player_df["Direction"].to_numpy()
 
     player_df["hit_coords_x"] = [math.fabs(d * math.cos(angle[i])) for i, d in enumerate(dist)]
     player_df["hit_coords_y"] = [math.fabs(d * math.sin(angle[i])) for i, d in enumerate(dist)]
 
-    aff = Image.open(os.getcwd() + "/views/plots/aff.png") \
+    aff: Image.Image = Image.open(os.getcwd() + "/views/plots/aff.png") \
         .rotate(90 + 180).resize((1500, 1500))
     ax.imshow(aff, extent=(-265, 600, -310, 600))
 
@@ -43,7 +42,7 @@ def spray_chart(player_df: pd.DataFrame, ax):
             90,
             90,
             fc="none",
-            ec="brown"
+            ec="red"
         )
     )
 

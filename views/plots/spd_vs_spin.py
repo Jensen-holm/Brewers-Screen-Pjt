@@ -1,7 +1,6 @@
 import seaborn as sns
 
 
-# a pitcher only plot
 def spin_vs_mph(pitcher_df, ax, title="Spin Rate vs. MPH") -> None:
     """
     Plots a pitchers spin rate versus the release speed of the ball

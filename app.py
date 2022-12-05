@@ -29,10 +29,11 @@ def index():
     # default data
     pos_page: str = check_page(request.path)
 
-    (player_name, headers,
-     data, unique_players,
-     plyr_team, side
-     ) = default(tbl, pos_page)
+    (
+        player_name, headers,
+        data, unique_players,
+        plyr_team, side
+    ) = default(tbl, pos_page)
 
     # when user inputs a player name
     if request.method == "POST":
@@ -43,8 +44,6 @@ def index():
             player_name,
             pos_page
         )
-
-    print(str(request.path))
 
     return render_template(
         "index.html",

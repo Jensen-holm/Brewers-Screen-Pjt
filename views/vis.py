@@ -26,7 +26,7 @@ def plot(player_df, player_pos: str) -> None:
     the 1 x 3 row of graphs based on the current app view
     :param player_df: subset of the data to plot from
     :param player_pos: if the player is a "Pitcher" or "Batter"
-    :return: saves the plot as an svg file in our assets folder
+    :return: saves the plot as a svg file in our assets folder
     """
     fig, ax = plt.subplots(1, 3)
 
@@ -44,7 +44,6 @@ def plot(player_df, player_pos: str) -> None:
         ax=ax[1],
         color_by="PitchResult",
         title="Strike Zone w/ Result Type",
-        cp="icefire"
     )
 
     if player_pos == "Pitcher":
